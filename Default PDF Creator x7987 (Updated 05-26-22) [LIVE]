@@ -805,34 +805,34 @@
             <div class="col-xs-6 col-no-margin">
                 <table class="pricing-table table">
                     <tbody>
-                        {% for discount in discounts %}
-                            {% if discount.amount != 0.00 %}
+                        {% for discount in discount_applications %}
+                            {% if discount.value != 0.00 %}
+                                {% if discount.title != blank %}
                                 <tr>
                                     <td class="pricing-table-title">
                                       <span class="editable" data-key="discount">
                                         Discount
                                       </span>
-                                      {% if discount.code != blank %}
-                                        {% if discount.code == 'Custom discount' %}
+                                        {% if discount.title == 'Custom discount' %}
                                           <span class="break">
                                             [Custom]
                                           </span>
                                         {% else %}
                                           <span class="break">
-                                            [{{ discount.code }}]
+                                            [{{ discount.title }}]
                                           </span>
                                         {% endif %}
-                                      {% endif %}
                                     </td>
-                                    <td class="pricing-table-text">-{{ discount.amount | money }}</td>
+                                    <td class="pricing-table-text">-{{ discount.value | money }}</td>
                                 </tr>
-                            {% endif %}
-                        {% else %}
-                            {% if total_discounts != 0.00 %}
-                                <tr>
-                                    <td class="pricing-table-title"><span class="editable" data-key="discount">Discount</span></td>
-                                    <td class="pricing-table-text">-{{ total_discounts | money }}</td>
-                                </tr>
+                                {% endif %}
+                            {% else %}
+                                {% if total_discounts != 0.00 %}
+                                    <tr>
+                                        <td class="pricing-table-title"><span class="editable" data-key="discount">Discount</span></td>
+                                        <td class="pricing-table-text">-{{ total_discounts | money }}</td>
+                                    </tr>
+                                {% endif %}
                             {% endif %}
                         {% endfor %}
                         <tr>
@@ -872,6 +872,7 @@
                                 <td class="pricing-table-text">
                                   -{{ transaction.amount | money }}
                                 </td>
+                                
                               </tr>
                               {% break %}
                           {% endif %}
@@ -918,8 +919,8 @@
             <div class="col-xs-1"></div>
             <div class="col-xs-5 text-right">
                 <div class="shop-address-block full-editable" data-key="shop_block">
-                    <p>5171 California Avenue, Suite 250</p>
-                    <p>Irvine, CA 92617</p>
+                    <p>18004 Sky Park Circle #120</p>
+                    <p>Irvine, CA 92614</p>
                     <p>support@trustedtechteam.com</p>
                     <p>(855) 202-8140</p>
                 </div>
